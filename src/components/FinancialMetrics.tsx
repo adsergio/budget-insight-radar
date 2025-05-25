@@ -1,6 +1,7 @@
 
 import { Card } from "@/components/ui/card";
 import { TrendingUp, TrendingDown, DollarSign, Wallet } from "lucide-react";
+import { useFinancialMetrics } from "@/hooks/useFinancialMetrics";
 
 interface FinancialMetricsProps {
   dateFilter: string;
@@ -8,13 +9,7 @@ interface FinancialMetricsProps {
 }
 
 export const FinancialMetrics = ({ dateFilter, typeFilter }: FinancialMetricsProps) => {
-  // Mock data - será substituído pela integração real com Supabase
-  const metrics = {
-    receitas: 15420.50,
-    despesas: 8750.30,
-    saldo: 6670.20,
-    transacoes: 47
-  };
+  const metrics = useFinancialMetrics(dateFilter, typeFilter);
 
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('pt-BR', {
@@ -30,7 +25,6 @@ export const FinancialMetrics = ({ dateFilter, typeFilter }: FinancialMetricsPro
           <div>
             <p className="text-sm font-medium text-green-600 mb-1">Receitas</p>
             <p className="text-2xl font-bold text-green-700">{formatCurrency(metrics.receitas)}</p>
-            <p className="text-xs text-green-500 mt-1">+12.5% vs mês anterior</p>
           </div>
           <div className="p-3 bg-green-100 rounded-lg">
             <TrendingUp className="w-6 h-6 text-green-600" />
@@ -43,7 +37,6 @@ export const FinancialMetrics = ({ dateFilter, typeFilter }: FinancialMetricsPro
           <div>
             <p className="text-sm font-medium text-red-600 mb-1">Despesas</p>
             <p className="text-2xl font-bold text-red-700">{formatCurrency(metrics.despesas)}</p>
-            <p className="text-xs text-red-500 mt-1">-5.2% vs mês anterior</p>
           </div>
           <div className="p-3 bg-red-100 rounded-lg">
             <TrendingDown className="w-6 h-6 text-red-600" />
@@ -56,7 +49,6 @@ export const FinancialMetrics = ({ dateFilter, typeFilter }: FinancialMetricsPro
           <div>
             <p className="text-sm font-medium text-blue-600 mb-1">Saldo Atual</p>
             <p className="text-2xl font-bold text-blue-700">{formatCurrency(metrics.saldo)}</p>
-            <p className="text-xs text-blue-500 mt-1">+8.3% vs mês anterior</p>
           </div>
           <div className="p-3 bg-blue-100 rounded-lg">
             <Wallet className="w-6 h-6 text-blue-600" />
