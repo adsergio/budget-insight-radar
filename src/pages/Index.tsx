@@ -4,6 +4,7 @@ import { FinancialMetrics } from "@/components/FinancialMetrics";
 import { CategoryChart } from "@/components/CategoryChart";
 import { RecentTransactions } from "@/components/RecentTransactions";
 import { TransactionFilters } from "@/components/TransactionFilters";
+import { RevenueExpenseChart } from "@/components/RevenueExpenseChart";
 import { useState } from "react";
 
 const Index = () => {
@@ -27,7 +28,11 @@ const Index = () => {
         <FinancialMetrics dateFilter={dateFilter} typeFilter={typeFilter} />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          <RevenueExpenseChart dateFilter={dateFilter} />
           <CategoryChart dateFilter={dateFilter} />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-1 gap-8 mb-8">
           <RecentTransactions dateFilter={dateFilter} />
         </div>
       </div>
