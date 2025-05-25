@@ -1,11 +1,35 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { DashboardHeader } from "@/components/DashboardHeader";
+import { FinancialMetrics } from "@/components/FinancialMetrics";
+import { CategoryChart } from "@/components/CategoryChart";
+import { RecentTransactions } from "@/components/RecentTransactions";
+import { TransactionFilters } from "@/components/TransactionFilters";
+import { useState } from "react";
 
 const Index = () => {
+  const [dateFilter, setDateFilter] = useState("30d");
+  const [typeFilter, setTypeFilter] = useState("all");
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+      <div className="container mx-auto px-4 py-8">
+        <DashboardHeader />
+        
+        <div className="mb-8">
+          <TransactionFilters 
+            dateFilter={dateFilter}
+            typeFilter={typeFilter}
+            onDateFilterChange={setDateFilter}
+            onTypeFilterChange={setTypeFilter}
+          />
+        </div>
+
+        <FinancialMetrics dateFilter={dateFilter} typeFilter={typeFilter} />
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          <CategoryChart dateFilter={dateFilter} />
+          <RecentTransactions dateFilter={dateFilter} />
+        </div>
       </div>
     </div>
   );
