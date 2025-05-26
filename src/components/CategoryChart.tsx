@@ -1,4 +1,3 @@
-
 import { Card } from "@/components/ui/card";
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts";
 import { useTransactions } from "@/hooks/useTransactions";
@@ -37,10 +36,32 @@ export const CategoryChart = ({ dateFilter }: CategoryChartProps) => {
       'Entretenimento': '#45B7D1',
       'Saúde': '#96CEB4',
       'Educação': '#FFEAA7',
-      'Moradia': '#DDA0DD',
+      'Moradia': '#A29BFE',
+      'Vestuário': '#FD79A8',
+      'Lazer': '#FDCB6E',
+      'Tecnologia': '#6C5CE7',
+      'Supermercado': '#00B894',
+      'Farmácia': '#E17055',
+      'Combustível': '#2D3436',
+      'Restaurante': '#E84393',
+      'Academia': '#00CEC9',
+      'Beleza': '#FF7675',
+      'Viagem': '#74B9FF',
       'Outros': '#95A5A6'
     };
-    return colors[categoria as keyof typeof colors] || '#95A5A6';
+    
+    // Se a categoria não está mapeada, gera uma cor baseada no hash do nome
+    if (!colors[categoria as keyof typeof colors]) {
+      const availableColors = [
+        '#FF8A80', '#FFB74D', '#FFD54F', '#AED581', '#81C784',
+        '#4DB6AC', '#64B5F6', '#9575CD', '#F06292', '#FF8A65',
+        '#BCAAA4', '#78909C', '#90A4AE', '#A1887F', '#8D6E63'
+      ];
+      const index = categoria.length % availableColors.length;
+      return availableColors[index];
+    }
+    
+    return colors[categoria as keyof typeof colors];
   }
 
   const formatCurrency = (value: number) => {
