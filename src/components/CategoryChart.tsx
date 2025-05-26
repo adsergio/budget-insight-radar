@@ -1,3 +1,4 @@
+
 import { Card } from "@/components/ui/card";
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts";
 import { useTransactions } from "@/hooks/useTransactions";
@@ -31,6 +32,32 @@ export const CategoryChart = ({ dateFilter }: CategoryChartProps) => {
 
   function getColorForCategory(categoria: string): string {
     const colors = {
+      'ALIMENTAÇÃO': '#FF6B6B',
+      'TRANSPORTE': '#4ECDC4', 
+      'ENTRETENIMENTO': '#45B7D1',
+      'SAÚDE': '#96CEB4',
+      'EDUCAÇÃO': '#FFEAA7',
+      'MORADIA': '#A29BFE',
+      'VESTUÁRIO': '#FD79A8',
+      'LAZER': '#FDCB6E',
+      'TECNOLOGIA': '#6C5CE7',
+      'SUPERMERCADO': '#00B894',
+      'FARMÁCIA': '#E17055',
+      'COMBUSTÍVEL': '#2D3436',
+      'COMBUSTIVEL': '#2D3436',
+      'RESTAURANTE': '#E84393',
+      'ACADEMIA': '#00CEC9',
+      'BELEZA': '#FF7675',
+      'PRODUTOS BELEZA': '#FF7675',
+      'VIAGEM': '#74B9FF',
+      'CASA': '#DDA0DD',
+      'COMPRAS': '#FF9F43',
+      'SERVIÇOS': '#26DE81',
+      'PETS': '#FD79A8',
+      'INVESTIMENTOS': '#5f27cd',
+      'IMPOSTOS': '#636e72',
+      'SEGUROS': '#00cec9',
+      'MANUTENÇÃO': '#e17055',
       'Alimentação': '#FF6B6B',
       'Transporte': '#4ECDC4',
       'Entretenimento': '#45B7D1',
@@ -53,9 +80,10 @@ export const CategoryChart = ({ dateFilter }: CategoryChartProps) => {
     // Se a categoria não está mapeada, gera uma cor baseada no hash do nome
     if (!colors[categoria as keyof typeof colors]) {
       const availableColors = [
-        '#FF8A80', '#FFB74D', '#FFD54F', '#AED581', '#81C784',
-        '#4DB6AC', '#64B5F6', '#9575CD', '#F06292', '#FF8A65',
-        '#BCAAA4', '#78909C', '#90A4AE', '#A1887F', '#8D6E63'
+        '#e74c3c', '#3498db', '#2ecc71', '#f39c12', '#9b59b6',
+        '#1abc9c', '#34495e', '#e67e22', '#8e44ad', '#16a085',
+        '#27ae60', '#f1c40f', '#d35400', '#c0392b', '#2980b9',
+        '#7f8c8d', '#ecf0f1', '#bdc3c7', '#95a5a6', '#f39800'
       ];
       const index = categoria.length % availableColors.length;
       return availableColors[index];
